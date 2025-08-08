@@ -1,0 +1,100 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Credit Transfer Checker{% endblock title%}
+{% block content %}
+<br><br><br>
+<div style="display: flex; gap: 30px; justify-content: center; margin-top: 20px; flex-wrap: wrap;">
+  
+
+    <!-- Box 1: Universities (with dropdown) -->
+  <div class="card text-center" style="width: 200px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <div style="font-size: 40px; color: #003366; margin-top: 20px;">🎓</div>
+    <div class="card-body">
+      <h5 class="card-title">Universities</h5>
+      <h6 class="card-subtitle mb-2 text-muted">5</h6>
+      <div class="dropdown">
+        <a class="btn btn-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+          Universities
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="https://www.ewubd.edu/">EWU</a></li>
+          <li><a class="dropdown-item" href="https://www.northsouth.edu/">NSU</a></li>
+          <li><a class="dropdown-item" href="https://www.bracu.ac.bd/">BRAC</a></li>
+          <li><a class="dropdown-item" href="https://iub.ac.bd/">IUB</a></li>
+          <li><a class="dropdown-item" href="https://www.aiub.edu/">AIUB</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Box 2: Department (with dropdown, non-clickable items) -->
+  <div class="card text-center" style="width: 200px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <div style="font-size: 40px; color: #003366; margin-top: 20px;">🏫</div>
+    <div class="card-body">
+      <h5 class="card-title">Department</h5>
+      <h6 class="card-subtitle mb-2 text-muted">CSE<hr>🧑🏻‍💻👩🏻‍💻</h6>
+      <!-- <div class="dropdown">
+        <a class="btn btn-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: #0056b3;">
+          Universities
+        </a>
+        <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#" onclick="loadTemplate('ewu.html')">EWU</a></li>
+      <li><a class="dropdown-item" href="#" onclick="loadTemplate('nsu.html')">NSU</a></li>
+      <li><a class="dropdown-item" href="#" onclick="loadTemplate('brac.html')">BRAC</a></li>
+      <li><a class="dropdown-item" href="#" onclick="loadTemplate('iub.html')">IUB</a></li>
+      <li><a class="dropdown-item" href="#" onclick="loadTemplate('aiub.html')">AIUB</a></li>
+    </ul>
+      </div> -->
+    </div>
+  </div>
+
+  <!-- Box 3: Courses (no dropdown) -->
+  <div class="card text-center" style="width: 200px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <div style="font-size: 40px; color: #003366; margin-top: 20px;">📚</div>
+    <div class="card-body">
+      <h5 class="card-title">Courses</h5>
+      <h6 class="card-subtitle mb-2 text-muted">457</h6>
+      <a href="/course/" class="btn btn-link" style="text-decoration: none; color: #0056b3;">all courses</a>
+    </div>
+  </div>
+
+  <!-- Box 4: Equivalencies (no dropdown) -->
+  <div class="card text-center" style="width: 200px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <div style="font-size: 40px; color: #003366; margin-top: 20px;">👥</div>
+    <div class="card-body">
+      <h5 class="card-title">Equivalencies</h5>
+      <h6 class="card-subtitle mb-2 text-muted">100</h6>
+      <a href="/equi/" class="btn btn-link" style="text-decoration: none; color: #0056b3;">all similar courses</a>
+    </div>
+  </div>
+
+  <!-- Box 5: Check Credits (no dropdown) -->
+  <div class="card text-center" style="width: 200px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <div style="font-size: 40px; color: #003366; margin-top: 20px;">↔️</div>
+    <div class="card-body">
+      <h5 class="card-title">Check Transfer</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Credit</h6>
+      <a href="/check/" class="btn btn-link" style="text-decoration: none; color: #0056b3;">credit match</a>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+<div class="d-flex justify-content-center align-items-center flex-wrap gap-3 my-4">
+  <img src="{% static 'images/nsu.png' %}" class="rounded" alt="NSU" height="80">
+  <img src="{% static 'images/brac.png' %}" class="rounded" alt="BRAC" height="80">
+  <img src="{% static 'images/ewu.png' %}" class="rounded" alt="EWU" height="80">
+  <img src="{% static 'images/iub.png' %}" class="rounded" alt="IUB" height="80">
+  <img src="{% static 'images/aiub.png' %}" class="rounded" alt="AIUB" height="80">
+</div>
+
+
+
+{% endblock content %}

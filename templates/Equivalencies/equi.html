@@ -1,0 +1,27 @@
+{% extends 'common/base.html' %}
+{% block title %}Similar Courses{% endblock title %}
+
+{% block content %}
+<h2 class="mb-4">Similar Courses</h2>
+
+<table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>University Name</th>
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Course Credit</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.university_name }}</td>
+            <td>{{ course.course_code }}</td>
+            <td>{{ course.course_name }}</td>
+            <td>{{ course.course_credit }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

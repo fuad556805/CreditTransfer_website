@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Credit Transfer Checker{% endblock title %}</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="{% static 'CSS/bootstrap.min.css' %}" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'common/base.css' %}" />
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg custom-navbar">
+  <div class="container-fluid">
+    <!-- Logo & Brand Name -->
+    <a class="navbar-brand" href="{% url 'ewu' %}">
+      <img src="{% static 'images/logo.jpg' %}" alt="Logo" />
+      Credit Transfer Checker
+    </a>
+
+    <!-- 🔻 Toggle button for mobile dropdown -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar items -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav d-flex flex-row gap-2 ms-3">
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == '/home/' %}active{% endif %}" href="/home/">Home</a>
+        </li>
+        
+        <a class="nav-link {% if request.path == '/course/' %}active{% endif %}" href="/course/">Courses</a>
+        <a class="nav-link {% if request.path == '/equi/' %}active{% endif %}" href="/equi/">Equivalencies</a>
+        <a class="nav-link {% if request.path == '/check/' %}active{% endif %}" href="/check/">Check Transfer</a>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/admin/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin
+          </a>
+          <ul class="dropdown-menu">
+            <!-- <li><a class="dropdown-item" href="#">Add</a></li>
+            <li><a class="dropdown-item" href="#">Remove</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><hr class="dropdown-divider" /></li> -->
+            <li><a class="dropdown-item" href="/admin/">Log in</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Page content block -->
+{% block content %}
+<header class="bg-light py-5 text-center">
+  <div class="container">
+    <h1 class="display-4 fw-bold">Welcome to Credit Transfer Checker</h1>
+    <p class="lead text-muted">Compare and match course open credits across top universities like NSU, BRAC, EWU, IUB, AIUB</p>
+    <a href="{% url 'homes' %}" class="btn btn-primary btn-lg mt-3">Get Started</a>
+  </div>
+</header>
+<br><br>
+
+<div class="d-flex justify-content-center align-items-center flex-wrap gap-3 my-4">
+  <img src="{% static 'images/nsu.png' %}" class="rounded" alt="NSU" height="80">
+  <img src="{% static 'images/brac.png' %}" class="rounded" alt="BRAC" height="80">
+  <img src="{% static 'images/ewu.png' %}" class="rounded" alt="EWU" height="80">
+  <img src="{% static 'images/iub.png' %}" class="rounded" alt="IUB" height="80">
+  <img src="{% static 'images/aiub.png' %}" class="rounded" alt="AIUB" height="80">
+</div>
+
+<p style="text-align: center; font-size: 0.9rem; color: #555; margin-top: 10px;">
+  <strong>Disclaimer:</strong> This website is a project for Database Systems (CSE 302) at East West University.<br>Website information may not be 100% accurate. Please contact the universities directly for official details.
+</p>
+
+<p style="text-align: center; font-size: 0.95rem; color: #333; margin-top: 65px; font-weight: 600; line-height: 1.6;">
+  Al Fahim Fuad<br>
+  <a href="mailto:fuad556805@gmail.com" style="color: #0056b3; text-decoration: none;">fuad556805@gmail.com<br>2023-1-60-066@std.ewubd.edu</a>
+</p>
+
+
+
+{% endblock content %}
+
+<!-- Bootstrap Bundle with Popper (for dropdown to work) -->
+<script src="{% static 'JS/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Credit Transfer Checker{% endblock title %}
+{% block content %}
+
+<form method="POST" style="max-width: 400px; margin: 40px auto; background-color: #f9f9f9; padding: 20px 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+  {% csrf_token %}
+
+  <h3 style="text-align: center; margin-bottom: 25px; color: #003366;">Check Transfer</h3>
+
+  <div class="form-group" style="margin-bottom: 15px;">
+    <label for="source" style="display: block; font-weight: bold;">Source University</label>
+    <select name="source_uni" id="source" required style="width: 100%; padding: 8px;">
+      {% for uni in source_uni_list %}
+        <option value="{{ uni }}">{{ uni }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="form-group" style="margin-bottom: 15px;">
+    <label for="target" style="display: block; font-weight: bold;">Target University</label>
+    <select name="target_uni" id="target" required style="width: 100%; padding: 8px;">
+      {% for uni in target_uni_list %}
+        <option value="{{ uni }}">{{ uni }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="form-group" style="margin-bottom: 15px;">
+    <label for="subject" style="display: block; font-weight: bold;">Subject</label>
+    <select name="subject" id="subject" required style="width: 100%; padding: 8px;">
+      {% for sub in subject_list %}
+        <option value="{{ sub }}">{{ sub }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <button type="submit" style="width: 100%; padding: 10px; background-color: #003366; color: white; border: none; border-radius: 5px; font-weight: bold;">Check</button>
+</form>
+
+{% if results %}
+  <div style="max-width: 800px; margin: 30px auto;">
+    <h3>Matched Courses Between {{ request.POST.source_uni }} and {{ request.POST.target_uni }}</h3>
+    <table style="width: 100%; border-collapse: collapse;" border="1">
+      <thead>
+        <tr style="background-color: #eee;">
+          <th>Course Code</th>
+          <th>Course Name</th>
+          <th>Course Credit</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for code, name, credit in results %}
+          <tr>
+            <td>{{ code }}</td>
+            <td>{{ name }}</td>
+            <td>{{ credit }}</td>
+          </tr>
+        {% endfor %}
+        <tr style="font-weight: bold; background-color: #f0f0f0;">
+          <td colspan="2" style="text-align: right;">Total Credit:</td>
+          <td>{{ total_credit }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% elif request.method == 'POST' %}
+  <p style="text-align:center; color: red;">No matching courses found.</p>
+{% endif %}
+
+{% endblock content %}

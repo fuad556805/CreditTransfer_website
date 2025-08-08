@@ -1,0 +1,83 @@
+/* Navbar background and text */
+.custom-navbar {
+  background: linear-gradient(90deg, #0a58ca, #174ea6); /* rich blue gradient */
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* subtle shadow */
+}
+
+/* Brand styling */
+.custom-navbar .navbar-brand {
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff !important;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.7); /* subtle gold glow */
+}
+
+/* Logo size and styling */
+.custom-navbar .navbar-brand img {
+  height: 44px;
+  width: auto;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+}
+
+/* Nav links color and transition */
+.custom-navbar .nav-link,
+.custom-navbar .navbar-brand {
+  color: #fff !important;
+  transition: color 0.3s ease;
+}
+
+/* Active nav link */
+.custom-navbar .nav-link.active {
+  color: #ffd700 !important; /* gold */
+  font-weight: 600;
+  text-shadow: 0 0 6px #ffd700;
+}
+
+/* Nav link hover effect */
+.custom-navbar .nav-link:hover {
+  color: #ffe066 !important; /* lighter gold */
+  text-decoration: underline;
+}
+
+/* Dropdown menu styling */
+.custom-navbar .dropdown-menu {
+  background-color: #0a58ca; /* dark blue */
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  margin-top: 8px;
+  min-width: 160px;
+  padding: 6px 0;
+  transition: all 0.3s ease;
+}
+
+/* Dropdown menu items */
+.custom-navbar .dropdown-menu a.dropdown-item {
+  color: #fff;
+  padding: 8px 20px;
+  font-weight: 500;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Dropdown item hover */
+.custom-navbar .dropdown-menu a.dropdown-item:hover,
+.custom-navbar .dropdown-menu a.dropdown-item:focus {
+  
+  color: #0a58ca;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+/* Dropdown divider */
+.custom-navbar .dropdown-divider {
+  border-top: 1px solid rgba(255, 215, 0, 0.4);
+  margin: 0.5rem 0;
+}
+
+
+

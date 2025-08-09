@@ -7,7 +7,7 @@ class AllCourse(models.Model):
 
     class Meta:
         db_table = 'all_courses'
-        managed = True  # Django will manage this table (create/migrate)
+        managed = False  # Django will manage this table (create/migrate)
 
 class University(models.Model):
     university_name = models.CharField(max_length=50, primary_key=True)

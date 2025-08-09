@@ -8,5 +8,5 @@ class SimilarCourse(models.Model):
 
     class Meta:
         db_table = 'similar_courses'
-        managed = True
+        managed = False
         unique_together = (('university_name', 'course_code'),)

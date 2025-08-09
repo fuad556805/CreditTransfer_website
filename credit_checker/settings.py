@@ -8,17 +8,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = BASE_DIR / 'templates'
 STATIC_DIR = BASE_DIR / 'static'
 
-# Secret Key (Render এর DJANGO_SECRET_KEY থেকে নিতে পারেন, না থাকলে ডিফল্ট)
+# Secret Key
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'unsafe-secret-key-for-dev-only')
 
-# Debug Mode (True/False স্ট্রিং থেকে কনভার্ট হবে)
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+# Debug Mode (env থেকে string আসবে, সেটা True/False এ কনভার্ট)
+DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1', 'yes']
 
-# Allowed Hosts
-ALLOWED_HOSTS = ['credittransfer-website.onrender.com', '127.0.0.1', 'localhost']
+# Allowed Hosts (কমা দিয়ে আলাদা করে দিলে list হবে)
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'credittransfer-website.onrender.com,127.0.0.1,localhost').split(',')
 
-# CSRF Trusted Origins (https url)
-CSRF_TRUSTED_ORIGINS = ['https://credittransfer-website.onrender.com']
+# CSRF Trusted Origins
+CSRF_TRUSTED_ORIGINS = [f"https://{host.strip()}" for host in ALLOWED_HOSTS if host.strip() != 'localhost' and host.strip() != '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -68,7 +68,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.getenv('DB_NAME', 'creditchecker'),
         'USER': os.getenv('DB_USER', 'root'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'fuad1234@'),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
         'HOST': os.getenv('DB_HOST', 'localhost'),
         'PORT': os.getenv('DB_PORT', '3306'),
         'OPTIONS': {
@@ -89,12 +89,11 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files সেটআপ
+# Static files setup
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# WhiteNoise এর জন্য Static Files storage backend
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

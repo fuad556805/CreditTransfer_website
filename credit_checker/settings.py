@@ -2,19 +2,22 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-
-load_dotenv()
+load_dotenv()  # লোকাল .env ফাইল থেকে ভেরিয়েবল লোড করার জন্য
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = BASE_DIR / 'templates'
 STATIC_DIR = BASE_DIR / 'static'
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'unsafe-secret-key-for-dev-only')
+# Secret Key (Render এর DJANGO_SECRET_KEY থেকে নিতে পারেন, না থাকলে ডিফল্ট)
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'unsafe-secret-key-for-dev-only')
 
+# Debug Mode (True/False স্ট্রিং থেকে কনভার্ট হবে)
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
+# Allowed Hosts
 ALLOWED_HOSTS = ['credittransfer-website.onrender.com', '127.0.0.1', 'localhost']
 
+# CSRF Trusted Origins (https url)
 CSRF_TRUSTED_ORIGINS = ['https://credittransfer-website.onrender.com']
 
 INSTALLED_APPS = [
@@ -27,12 +30,12 @@ INSTALLED_APPS = [
     'Home',
     'Equivalencies',
     'Courses',
-    'Check_Transfer'
+    'Check_Transfer',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise for static files
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Static files এর জন্য
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -68,22 +71,17 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD', 'fuad1234@'),
         'HOST': os.getenv('DB_HOST', 'localhost'),
         'PORT': os.getenv('DB_PORT', '3306'),
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
 ]
 
 LANGUAGE_CODE = 'en-us'
@@ -91,12 +89,12 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files settings
+# Static files সেটআপ
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# WhiteNoise storage backend (for production)
+# WhiteNoise এর জন্য Static Files storage backend
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

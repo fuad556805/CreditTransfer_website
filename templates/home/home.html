@@ -37,12 +37,12 @@
         <a class="btn btn-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: #0056b3;">
           Universities
         </a>
-        <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#" onclick="loadTemplate('ewu.html')">EWU</a></li>
-      <li><a class="dropdown-item" href="#" onclick="loadTemplate('nsu.html')">NSU</a></li>
-      <li><a class="dropdown-item" href="#" onclick="loadTemplate('brac.html')">BRAC</a></li>
-      <li><a class="dropdown-item" href="#" onclick="loadTemplate('iub.html')">IUB</a></li>
-      <li><a class="dropdown-item" href="#" onclick="loadTemplate('aiub.html')">AIUB</a></li>
+      <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="{% url 'university-courses' 'EWU' %}" onclick="loadTemplate('ewu.html')">EWU</a></li>
+      <li><a class="dropdown-item" href="{% url 'university-courses' 'NSU' %}" onclick="loadTemplate('nsu.html')">NSU</a></li>
+      <li><a class="dropdown-item" href="{% url 'university-courses' 'BRAC' %}" onclick="loadTemplate('brac.html')">BRAC</a></li>
+      <li><a class="dropdown-item" href="{% url 'university-courses' 'IUB' %}" onclick="loadTemplate('iub.html')">IUB</a></li>
+      <li><a class="dropdown-item" href="{% url 'university-courses' 'AIUB' %}" onclick="loadTemplate('aiub.html')">AIUB</a></li>
     </ul>
       </div>
     </div>
